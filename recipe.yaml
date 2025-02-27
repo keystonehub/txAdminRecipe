@@ -1,0 +1,76 @@
+$engine: 3
+$onesync: on
+name: Keystone Framework
+author: Case
+description: Keystone Framework Beta Build.
+
+tasks:
+
+  # Download default CFX resources
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: master
+    subpath: resources
+    dest: ./resources/[cfx-default]
+
+  # Download and setup OxMySQL
+  - action: download_file
+    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+    dest: ./resources/[standalone]/oxmysql.zip
+  - action: unzip
+    src: ./resources/[standalone]/oxmysql.zip
+    dest: ./resources/[standalone]
+
+  # Download Bob74_ipl
+  - action: download_github
+    src: https://github.com/Bob74/bob74_ipl
+    ref: master
+    dest: ./resources/[standalone]/bob74_ipl
+
+  # Download PMA-Voice
+  - action: download_github
+    src: https://github.com/AvarianKnight/pma-voice/releases/latest/download/pma-voice.zip
+    dest: ./resources/[standalone]/pma-voice.zip
+  - action: unzip
+    src: ./resources/[standalone]/pma-voice.zip
+    dest: ./resources/[standalone]/pma-voice
+
+  # Download fivem_utils
+  - action: download_github
+    src: https://github.com/keystonehub/fivem_utils/releases/latest/download/fivem_utils.zip
+    dest: ./resources/[standalone]/fivem_utils.zip
+  - action: unzip
+    src: ./resources/[standalone]/fivem_utils.zip
+    dest: ./resources/[standalone]/fivem_utils
+
+  # Download core Keystone framework resources
+  - action: download_github
+    src: https://github.com/keystonehub/keystone/releases/latest/download/keystone.zip
+    dest: ./resources/[core]/keystone.zip
+  - action: unzip
+    src: ./resources/[core]/keystone.zip
+    dest: ./resources/[core]
+
+  # Move server.cfg to root
+  - action: move_path
+    src: ./resources/[core]/server.cfg
+    dest: ./server.cfg
+
+  # Move logo to root
+  - action: move_path
+    src: ./resources/[core]/server_logo.png
+    dest: ./server_logo.png
+
+  # Remove unwanted files
+  - action: remove_path
+    path: ./resources/[core]/readme.md
+  - action: remove_path
+    path: ./resources/[core]/recipe.yaml
+
+  # Waste time (Placeholder for potential required pauses in script execution)
+  - action: waste_time
+    seconds: 5 
+
+  # Clean up temporary files
+  - action: remove_path
+    path: ./tmp
