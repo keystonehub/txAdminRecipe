@@ -7,6 +7,15 @@ description: Keystone Framework Beta Build.
 
 tasks:
 
+  # Connect Database
+  - action: connect_database 
+
+  # Download txAdminRecipe
+  - action: download_github
+    src: https://github.com/keystonehub/txAdminRecipe
+    ref: main
+    dest: ./resources/[txAdmin]
+
   # Download default CFX resources
   - action: download_github
     src: https://github.com/citizenfx/cfx-server-data
@@ -20,7 +29,7 @@ tasks:
     ref: main
     dest: ./resources/[core]
 
-  # Downlaod OxMySQL
+  # Download OxMySQL
   - action: download_file
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
     path: ./tmp/oxmysql.zip
@@ -46,34 +55,41 @@ tasks:
     ref: master
     dest: ./resources/[standalone]/fivem_utils
 
-  # Waste time 
+  # Waste time
   - action: waste_time
     seconds: 3 
 
-  # Connect Database
-  - action: connect_database 
+  # Replace String for SQL Configuration
+  - action: replace_string
+    mode: all_vars
+    file: 
+      - ./resources/[txAdmin]/setup.sql
 
-  # Run SQL setup
-  - action: execute_sql
-    file: ./resources/[core]/setup.sql
+  # Execute SQL Setup for txAdmin
+  - action: query_database
+    file: ./resources/[txAdmin]/setup.sql
 
   # Move server.cfg to root
   - action: move_path
-    src: ./resources/[core]/server.cfg
+    src: ./resources/[txAdmin]/server.cfg
     dest: ./server.cfg
 
   # Move logo to root
   - action: move_path
-    src: ./resources/[core]/server_logo.png
+    src: ./resources/[txAdmin]/server_logo.png
     dest: ./server_logo.png
 
   # Remove unwanted files
   - action: remove_path
-    path: ./resources/[core]/readme.md
+    path: ./resources/[txAdmin]/readme.md
   - action: remove_path
-    path: ./resources/[core]/recipe.yaml
+    path: ./resources/[txAdmin]/recipe.yaml
   - action: remove_path
-    path: ./resources/[core]/setup.sql
+    path: ./resources/[txAdmin]/setup.sql
+
+  # Remove the [txAdmin] directory and its contents
+  - action: remove_path
+    path: ./resources/[txAdmin]
 
   # Clean up temporary files
   - action: remove_path
