@@ -52,7 +52,7 @@ tasks:
   # Download fivem_utils
   - action: download_github
     src: https://github.com/keystonehub/fivem_utils
-    ref: master
+    ref: main
     dest: ./resources/[standalone]/fivem_utils
 
   # Waste time
