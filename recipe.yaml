@@ -29,7 +29,7 @@ tasks:
 
   # Download PMA-Voice
   - action: download_file
-    url: https://github.com/AvarianKnight/pma-voice/releases/latest/download/pma-voice.zip
+    url: https://github.com/AvarianKnight/pma-voice
     dest: ./resources/[standalone]/pma-voice.zip
   - action: unzip
     src: ./resources/[standalone]/pma-voice.zip
@@ -37,7 +37,7 @@ tasks:
 
   # Download fivem_utils
   - action: download_file
-    url: https://github.com/keystonehub/fivem_utils/releases/latest/download/fivem_utils.zip
+    url: https://github.com/keystonehub/fivem_utils
     dest: ./resources/[standalone]/fivem_utils.zip
   - action: unzip
     src: ./resources/[standalone]/fivem_utils.zip
@@ -45,7 +45,7 @@ tasks:
 
   # Download Keystone
   - action: download_file
-    url: https://github.com/keystonehub/keystone/releases/latest/download/keystone.zip
+    url: https://github.com/keystonehub/keystone
     dest: ./resources/[core]/keystone.zip
   - action: unzip
     src: ./resources/[core]/keystone.zip
