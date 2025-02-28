@@ -1,4 +1,5 @@
 $engine: 3
+$minFxVersion: 7290
 $onesync: on
 name: Keystone Framework
 author: Case
@@ -19,13 +20,13 @@ tasks:
     ref: main
     dest: ./resources/[core]
 
-  # Download and setup OxMySQL
+  # Downlaod OxMySQL
   - action: download_file
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
-    dest: ./resources/[standalone]/oxmysql.zip
+    path: ./tmp/oxmysql.zip
   - action: unzip
-    src: ./resources/[standalone]/oxmysql.zip
-    dest: ./resources/[standalone]
+    src: ./tmp/oxmysql.zip
+    dest: ./resources/[ox]
 
   # Download bob74_ipl
   - action: download_github
