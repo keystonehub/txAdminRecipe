@@ -43,7 +43,7 @@ tasks:
     src: ./resources/[standalone]/fivem_utils.zip
     dest: ./resources/[standalone]/fivem_utils
 
-  # Download core Keystone framework resources
+  # Download Keystone
   - action: download_file
     url: https://github.com/keystonehub/keystone/releases/latest/download/keystone.zip
     dest: ./resources/[core]/keystone.zip
