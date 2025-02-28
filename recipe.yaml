@@ -19,13 +19,13 @@ tasks:
     ref: main
     dest: ./resources/[core]
 
-  # Download and setup OxMySQL
+  # Download and unzip oxmysql
   - action: download_file
+    path: ./tmp/files/oxmysql.zip
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
-    dest: ./resources/[standalone]/oxmysql.zip
   - action: unzip
-    src: ./resources/[standalone]/oxmysql.zip
     dest: ./resources/[standalone]
+    src: ./tmp/files/oxmysql.zip
 
   # Download bob74_ipl
   - action: download_github
