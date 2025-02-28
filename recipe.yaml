@@ -15,17 +15,17 @@ tasks:
 
   # Download Keystone
   - action: download_github
-    src: https://github.com/keystonehub/keystone/
+    src: https://github.com/keystonehub/keystone
     ref: main
     dest: ./resources/[core]
 
-  # Download and unzip oxmysql
+  # Download and setup OxMySQL
   - action: download_file
-    path: ./tmp/files/oxmysql.zip
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+    dest: ./resources/[standalone]/oxmysql.zip
   - action: unzip
+    src: ./resources/[standalone]/oxmysql.zip
     dest: ./resources/[standalone]
-    src: ./tmp/files/oxmysql.zip
 
   # Download bob74_ipl
   - action: download_github
@@ -40,16 +40,16 @@ tasks:
     dest: ./resources/[standalone]/pma-voice
 
   # Download fivem_utils
-  - action: download_file
-    src: hhttps://github.com/keystonehub/fivem_utils
+  - action: download_github
+    src: https://github.com/keystonehub/fivem_utils
     ref: master
     dest: ./resources/[standalone]/fivem_utils
 
-  # Waste time
+  # Waste time 
   - action: waste_time
     seconds: 3 
 
-  # Connect DB
+  # Connect Database
   - action: connect_database 
 
   # Run SQL setup
