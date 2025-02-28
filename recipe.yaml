@@ -13,6 +13,12 @@ tasks:
     subpath: resources
     dest: ./resources/[cfx-default]
 
+  # Download Keystone
+  - action: download_github
+    src: https://github.com/keystonehub/keystone/
+    ref: main
+    dest: ./resources/[core]
+
   # Download and setup OxMySQL
   - action: download_file
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
@@ -21,35 +27,30 @@ tasks:
     src: ./resources/[standalone]/oxmysql.zip
     dest: ./resources/[standalone]
 
-  # Download Bob74_ipl
+  # Download bob74_ipl
   - action: download_github
     src: https://github.com/Bob74/bob74_ipl
     ref: master
     dest: ./resources/[standalone]/bob74_ipl
 
-  # Download PMA-Voice
-  - action: download_file
-    url: https://github.com/AvarianKnight/pma-voice
-    dest: ./resources/[standalone]/pma-voice.zip
-  - action: unzip
-    src: ./resources/[standalone]/pma-voice.zip
+  # Download pma-voice
+  - action: download_github
+    src: https://github.com/AvarianKnight/pma-voice
+    ref: master
     dest: ./resources/[standalone]/pma-voice
 
   # Download fivem_utils
   - action: download_file
-    url: https://github.com/keystonehub/fivem_utils
-    dest: ./resources/[standalone]/fivem_utils.zip
-  - action: unzip
-    src: ./resources/[standalone]/fivem_utils.zip
+    src: hhttps://github.com/keystonehub/fivem_utils
+    ref: master
     dest: ./resources/[standalone]/fivem_utils
 
-  # Download Keystone
-  - action: download_file
-    url: https://github.com/keystonehub/keystone
-    dest: ./resources/[core]/keystone.zip
-  - action: unzip
-    src: ./resources/[core]/keystone.zip
-    dest: ./resources/[core]
+  # Waste time
+  - action: waste_time
+    seconds: 3 
+
+  # Connect DB
+  - action: connect_database 
 
   # Run SQL setup
   - action: execute_sql
