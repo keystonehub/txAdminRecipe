@@ -27,7 +27,7 @@ tasks:
   - action: download_github
     src: https://github.com/keystonehub/keystone
     ref: main
-    dest: ./resources/[core]
+    dest: ./resources/[core]/keystone
 
   # Download OxMySQL
   - action: download_file
@@ -53,7 +53,7 @@ tasks:
   - action: download_github
     src: https://github.com/keystonehub/fivem_utils
     ref: main
-    dest: ./resources/[standalone]/fivem_utils
+    dest: ./resources/[core]/fivem_utils
 
   # Waste time
   - action: waste_time
