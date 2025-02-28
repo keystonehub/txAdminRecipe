@@ -99,29 +99,12 @@ CREATE TABLE IF NOT EXISTS `player_inventories` (
     FOREIGN KEY (`identifier`) REFERENCES `players` (`identifier`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `vehicle_inventories` (
-    `identifier` VARCHAR(255) NOT NULL,
-    `plate` VARCHAR(255) NOT NULL,
-    `inventory_type` ENUM('glovebox', 'trunk') NOT NULL,
-    `glovebox_slots` INT(2) NOT NULL DEFAULT 12,
-    `glovebox_weight` INT NOT NULL DEFAULT 0,
-    `glovebox_max_weight` INT NOT NULL DEFAULT 25000,
-    `glovebox_items` JSON NOT NULL DEFAULT (JSON_OBJECT()),
-    `trunk_slots` INT(2) NOT NULL DEFAULT 12,
-    `trunk_weight` INT NOT NULL DEFAULT 0,
-    `trunk_max_weight` INT NOT NULL DEFAULT 25000,
-    `trunk_items` JSON NOT NULL DEFAULT (JSON_OBJECT()),
-    PRIMARY KEY (`identifier`),
-    FOREIGN KEY (`identifier`) REFERENCES `players` (`identifier`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 CREATE TABLE IF NOT EXISTS `other_inventories` (
     `unique_id` VARCHAR(255) NOT NULL,
     `owner` VARCHAR(255) DEFAULT NULL,
-    `inventory_type` VARCHAR(50) NOT NULL,
-    `slots` INT(2) NOT NULL DEFAULT 30,
-    `grid_columns` INT(2) NOT NULL DEFAULT 10, 
-    `grid_rows` INT(2) NOT NULL DEFAULT 10,
+    `inventory_type` ENUM('glovebox', 'trunk', 'storage') NOT NULL,
+    `grid_columns` INT(2) NOT NULL DEFAULT 5, 
+    `grid_rows` INT(2) NOT NULL DEFAULT 5,
     `weight` INT NOT NULL DEFAULT 0,
     `max_weight` INT NOT NULL DEFAULT 80000,
     `items` JSON NOT NULL DEFAULT (JSON_OBJECT()),
@@ -179,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `player_statuses` (
 CREATE TABLE IF NOT EXISTS `player_flags` (
     `identifier` VARCHAR(255) NOT NULL,
     `is_dead` BOOLEAN NOT NULL DEFAULT 0,
+    `is_downed` BOOLEAN NOT NULL DEFAULT 0,
     `is_handcuffed` BOOLEAN NOT NULL DEFAULT 0,
     `is_ziptied` BOOLEAN NOT NULL DEFAULT 0,
     `is_wanted` BOOLEAN NOT NULL DEFAULT 0,
