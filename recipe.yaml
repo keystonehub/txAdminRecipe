@@ -28,28 +28,32 @@ tasks:
     dest: ./resources/[standalone]/bob74_ipl
 
   # Download PMA-Voice
-  - action: download_github
-    src: https://github.com/AvarianKnight/pma-voice/releases/latest/download/pma-voice.zip
+  - action: download_file
+    url: https://github.com/AvarianKnight/pma-voice/releases/latest/download/pma-voice.zip
     dest: ./resources/[standalone]/pma-voice.zip
   - action: unzip
     src: ./resources/[standalone]/pma-voice.zip
     dest: ./resources/[standalone]/pma-voice
 
   # Download fivem_utils
-  - action: download_github
-    src: https://github.com/keystonehub/fivem_utils/releases/latest/download/fivem_utils.zip
+  - action: download_file
+    url: https://github.com/keystonehub/fivem_utils/releases/latest/download/fivem_utils.zip
     dest: ./resources/[standalone]/fivem_utils.zip
   - action: unzip
     src: ./resources/[standalone]/fivem_utils.zip
     dest: ./resources/[standalone]/fivem_utils
 
   # Download core Keystone framework resources
-  - action: download_github
-    src: https://github.com/keystonehub/keystone/releases/latest/download/keystone.zip
+  - action: download_file
+    url: https://github.com/keystonehub/keystone/releases/latest/download/keystone.zip
     dest: ./resources/[core]/keystone.zip
   - action: unzip
     src: ./resources/[core]/keystone.zip
     dest: ./resources/[core]
+
+  # Run SQL setup
+  - action: execute_sql
+    file: ./resources/[core]/setup.sql
 
   # Move server.cfg to root
   - action: move_path
@@ -66,10 +70,8 @@ tasks:
     path: ./resources/[core]/readme.md
   - action: remove_path
     path: ./resources/[core]/recipe.yaml
-
-  # Waste time (Placeholder for potential required pauses in script execution)
-  - action: waste_time
-    seconds: 5 
+  - action: remove_path
+    path: ./resources/[core]/setup.sql
 
   # Clean up temporary files
   - action: remove_path
