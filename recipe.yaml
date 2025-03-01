@@ -46,7 +46,7 @@ tasks:
   # Download pma-voice
   - action: download_github
     src: https://github.com/AvarianKnight/pma-voice
-    ref: master
+    ref: main
     dest: ./resources/[standalone]/pma-voice
 
   # Download fivem_utils
